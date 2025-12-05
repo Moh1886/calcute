@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- تحسين عنوان الصفحة -->
+    <title>أفضل آلة حاسبة إلكترونية عربية - عمليات حسابية فورية</title>
+
+    <!-- وصف لمحركات البحث -->
+    <meta name="description" content="آلة حاسبة إلكترونية عربية لإجراء عمليات الجمع والطرح والضرب والقسمة والنسبة المئوية بسرعة ودقة. أداة مجانية وسهلة الاستخدام متاحة على جميع الأجهزة.">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            flex-direction: column;
+        }
+
+        .calculator {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .display {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .previous-operand {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            min-height: 24px;
+        }
+
+        .current-operand {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .number {
+            background: white;
+            color: #333;
+            border: 2px solid #e9ecef;
+        }
+
+        .operator {
+            background: #007bff;
+            color: white;
+        }
+
+        .equals {
+            background: #28a745;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .clear {
+            background: #dc3545;
+            color: white;
+        }
+
+        .special {
+            background: #6c757d;
+            color: white;
+        }
+
+        .zero {
+            grid-column: span 2;
+        }
+
+        /* قسم الشرح */
+        .seo-text {
+            background: white;
+            padding: 20px;
+            max-width: 700px;
+            border-radius: 15px;
+            line-height: 1.8;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .seo-text h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .seo-text p {
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .seo-text ul {
+            margin-right: 20px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+        <div class="display">
+            <div class="previous-operand"></div>
+            <div class="current-operand">0</div>
+        </div>
+
+        <div class="buttons">
+            <button class="clear" onclick="clearDisplay()">C</button>
+            <button class="special" onclick="deleteLast()">⌫</button>
+            <button class="special" onclick="appendOperation('%')">%</button>
+            <button class="operator" onclick="appendOperation('/')">÷</button>
+
+            <button class="number" onclick="appendNumber('7')">7</button>
+            <button class="number" onclick="appendNumber('8')">8</button>
+            <button class="number" onclick="appendNumber('9')">9</button>
+            <button class="operator" onclick="appendOperation('*')">×</button>
+
+            <button class="number" onclick="appendNumber('4')">4</button>
+            <button class="number" onclick="appendNumber('5')">5</button>
+            <button class="number" onclick="appendNumber('6')">6</button>
+            <button class="operator" onclick="appendOperation('-')">−</button>
+
+            <button class="number" onclick="appendNumber('1')">1</button>
+            <button class="number" onclick="appendNumber('2')">2</button>
+            <button class="number" onclick="appendNumber('3')">3</button>
+            <button class="operator" onclick="appendOperation('+')">+</button>
+
+            <button class="number zero" onclick="appendNumber('0')">0</button>
+            <button class="number" onclick="appendNumber('.')">.</button>
+            <button class="equals" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <!-- قسم المحتوى SEO -->
+    <div class="seo-text">
+        <h2>آلة حاسبة إلكترونية عربية</h2>
+        <p>
+            مرحبًا بك في أفضل آلة حاسبة عربية للعمليات الحسابية اليومية. يمكنك استخدام هذه الأداة لإجراء الحسابات الأساسية مثل
+            الجمع والطرح والضرب والقسمة والنسبة المئوية بسهولة تامة وبدون الحاجة إلى تحميل أي برنامج.
+        </p>
+
+        <h2>مميزات الآلة الحاسبة</h2>
+        <ul>
+            <li>دعم كامل للأرقام العربية.</li>
+            <li>واجهة سهلة وواضحة للاستخدام.</li>
+            <li>دقة عالية في عرض النتائج.</li>
+            <li>تعمل على جميع الأجهزة وأنظمة التشغيل.</li>
+            <li>إمكانية استخدام لوحة المفاتيح لسرعة أكبر.</li>
+        </ul>
+
+        <h2>ما هي استخدامات الآلة الحاسبة؟</h2>
+        <p>
+            يمكنك استخدام هذه الحاسبة لحساب الفواتير، القسمة السريعة، النسبة المئوية، العمليات الدراسية، أو حتى الحسابات التجارية اليومية.
+        </p>
+
+        <h2>أسئلة شائعة</h2>
+        <p><strong>هل الآلة الحاسبة مجانية؟</strong> نعم، مجانية بالكامل.</p>
+        <p><strong>هل تعمل بدون إنترنت؟</strong> نعم، بعد تحميل الصفحة تعمل بشكل كامل.</p>
+    </div>
+
+    <script>
+        let currentOperand = '0';
+        let previousOperand = '';
+        let operation = null;
+        let resetScreen = false;
+
+        const currentOperandElement = document.querySelector('.current-operand');
+        const previousOperandElement = document.querySelector('.previous-operand');
+
+        function updateDisplay() {
+            currentOperandElement.textContent = currentOperand;
+            previousOperandElement.textContent = previousOperand;
+        }
+
+        function appendNumber(number) {
+            if (resetScreen) {
+                currentOperand = '';
+                resetScreen = false;
+            }
+            
+            if (number === '.' && currentOperand.includes('.')) return;
+            if (currentOperand === '0' && number !== '.') {
+                currentOperand = number;
+            } else {
+                currentOperand += number;
+            }
+            updateDisplay();
+        }
+
+        function appendOperation(op) {
+            if (currentOperand === '') return;
+            
+            if (previousOperand !== '') {
+                calculate();
+            }
+            
+            operation = op;
+            previousOperand = `${currentOperand} ${getOperationSymbol(op)}`;
+            resetScreen = true;
+            updateDisplay();
+        }
+
+        function calculate() {
+            let computation;
+            const prev = parseFloat(previousOperand);
+            const current = parseFloat(currentOperand);
+            
+            if (isNaN(prev) || isNaN(current)) return;
+            
+            switch (operation) {
+                case '+': computation = prev + current; break;
+                case '-': computation = prev - current; break;
+                case '*': computation = prev * current; break;
+                case '/': computation = current === 0 ? 'خطأ: قسمة على صفر' : prev / current; break;
+                case '%': computation = prev % current; break;
+                default: return;
+            }
+            
+            currentOperand = computation.toString();
+            operation = null;
+            previousOperand = '';
+            resetScreen = true;
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentOperand = '0';
+            previousOperand = '';
+            operation = null;
+            resetScreen = false;
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            if (currentOperand.length === 1) {
+                currentOperand = '0';
+            } else {
+                currentOperand = currentOperand.slice(0, -1);
+            }
+            updateDisplay();
+        }
+
+        function getOperationSymbol(op) {
+            return { '+': '+', '-': '−', '*': '×', '/': '÷', '%': '%' }[op] || '';
+        }
+
+        document.addEventListener('keydown', (event) => {
+            if (/[0-9]/.test(event.key)) appendNumber(event.key);
+            else if (event.key === '.') appendNumber('.');
+            else if (['+', '-', '*', '/'].includes(event.key)) appendOperation(event.key);
+            else if (event.key === 'Enter' || event.key === '=') { event.preventDefault(); calculate(); }
+            else if (event.key === 'Escape') clearDisplay();
+            else if (event.key === 'Backspace') deleteLast();
+        });
+    </script>
+
+</body>
+</html>
